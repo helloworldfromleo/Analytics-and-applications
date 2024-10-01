@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+\begin{document}
+\section{General info}
+Linear regression is a supervised learning approach
+The \textbf{goal} is to predict the value dependent value based on one independent variable. The more dependent the variables, 
+the more precise is the prediction
+\section{Formula}
+A linear prediction function is used 
+\begin{equation}
+    \hat{y} = b_0 + b_1 * x
+\end{equation}
+\subsection{Variable definition}
+$\hat{y}$: The predicted value for the dependent variable \\
+$b_0$: The y interception \\
+$b_1$: The gradient \\  
+x: The independent value 
+\subsubsection{Variable calculation $b_1$}
+1. Calculate mean of x and y \\
+2. Calculate the distance of given data points to mean x and y \\
+3.
+\begin{equation}
+  \dfrac{\sum (x_i - \bar{x}) * (y_i - \bar{y}) }{\sum (x_i - \bar{x})^2}  
+\end{equation}  
+\subsubsection{Variable calculation $b_0$}
+1. Calculate mean of x and y \\
+2. $ b_0 = mean y - b_1 * mean x$
+\end{document}
