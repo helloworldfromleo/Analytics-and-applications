@@ -46,18 +46,17 @@ $\theta_j x_j^i$: $\theta$ is the slope for a specific feature $x_j$ at position
 $\sum_{j=1}^{n}\theta_j x_j^i$: Sums up the slope j multiplied with the feature j for the data point i, so $\hat{y}^i$ is calculated\\ 
 $( \sum_{j=1}^{n} \theta_j x_j^i - y^i)^2$: Calculates the squared difference between the predicted value $\hat{y}^i = \sum_{j=1}^{n}\theta_j x_j^i$ and the actual value $y^i$ for the data point i
 
-\section{Minimizing Loss funciton}\
+\section{Minimizing Loss function}\
 $l(\theta ) = \sum_{i=1}^{n} (\theta_j x_j^i - y^i)^2$
 
 \section{To repead}
 Deck 3 Slide 15
 
 \section{Gradient descent}
-Derivated optimization problem Tiefpunkt because the Error is the lowest. \\
-Therefore we have to derive the optimization formula. \\
-To find the Tiefpunkt of the optimization funciton, we enter x values into the derived function and therefore find out, where the y value is the lowest. \\
+Negative Derivated error function and step for step insert x-values to find the lowest y-value \\
 The stepsize indicates the difference between the current and the next entered x-value. If its to high, the lowest point might be skipepd. \\
 The optimal $\theta$ is to be found by this formula: \\
+$\theta_j := \theta_j - \propto \sum_{i=1}^{m} \left( \theta^\top x^{(i)} - y^{(i)} \right) x_j^{(i)}$ ==\\
 $\theta = (X^TX)^-1X^Ty$ 
 
 \section{Bias and Variance}
@@ -105,18 +104,17 @@ Returns a value between r<0 and r<=1\\
 5.Evaluate performance on test set \\
 \subsection{Test data leakage}
 Test data leakage describes the usage of test data to adjust the model (a.e. adjusting hyperparameters). Therefore the test data set should be isolated.\\
-\\subsubsection{Solving test data leakage}
+\subsubsection{Solving test data leakage}
 1: Recollect data if overfitting to test set is suspected\\
 2: Dont look at test set 
 \section{Regularization}
 The degree of polynomial can be seen as complexity of the model\\
 Regularization is used to prevent overfitting by penalizing large coefficient values. \\ 
-\\subsection{L2 Regularization/Ridge regression}
+\subsection{L2 Regularization/Ridge regression}
 
 \section{PROBLEMS}
 Lection 4 slide 7
 R Squared
 Leciton 4 slide 24
-
 
 \end{document}
