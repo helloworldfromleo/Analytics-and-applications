@@ -1,0 +1,6 @@
+Bias refers to the error introduced by approximating a real-world problem (which may be extremely complex) by a simplified model. It is essentially the difference between the model's predictions and the actual data.
+The patterns in the data cant be captured 
+
+Variance refers to the model's sensitivity to the specific data it was trained on. It measures how much the model's predictions would change if it were trained on different datasets (i.e., different subsets of the data).
+High Variance means that the model works good with training data but not good with test data (overfitting)
+

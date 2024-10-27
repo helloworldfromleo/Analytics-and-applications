@@ -1,0 +1,8 @@
+The primary goal of cross-validation is to evaluate a model’s performance in a robust way by splitting the available data into training and testing sets multiple times and averaging the results. 
+
+
+k-Fold Cross-Validation
+The dataset is divided into k equally sized subsets or "folds."
+The model is trained on k-1 folds and tested on the remaining fold.
+This process is repeated k times, with each fold being used exactly once as a test set.
+The final performance metric is obtained by averaging the results across all folds.   
