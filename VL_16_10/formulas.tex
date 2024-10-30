@@ -11,7 +11,7 @@ the SSE formula can be summarized into\\
 $ E(\theta) = \sum_{i}^{n} (\theta_1 * x_i + \theta_2 - y_i) ^2$
 
 \subsection{Canonical machine learning optimization problem}
-?? Formula not understandable. Lecture 3 deck, slide 10
+?? Formula not understandable.
 
 \subsection{vocabulary}
 1.Hypothesis function: The function used to predict values \\
@@ -49,15 +49,17 @@ $( \sum_{j=1}^{n} \theta_j x_j^i - y^i)^2$: Calculates the squared difference be
 \section{Minimizing Loss function}\
 $l(\theta ) = \sum_{i=1}^{n} (\theta_j x_j^i - y^i)^2$
 
-\section{To repead}
-Deck 3 Slide 15
-
 \section{Gradient descent}
-Negative Derivated error function and step for step insert x-values to find the lowest y-value \\
+Negative Derivated error function and step by step insert x-values to find the near zero y-value (error value) \\
 The stepsize indicates the difference between the current and the next entered x-value. If its to high, the lowest point might be skipepd. \\
 The optimal $\theta$ is to be found by this formula: \\
 $\theta_j := \theta_j - \propto \sum_{i=1}^{m} \left( \theta^\top x^{(i)} - y^{(i)} \right) x_j^{(i)}$ ==\\
-$\theta = (X^TX)^-1X^Ty$ 
+$\theta = (X^TX)^-1X^Ty$ \\ 
+X: Is the data matrix, each row is a data point and each column a feature \\
+y: Is the target vector, containing the target values to predict based on X \\
+$X^T$: Is the transposed data matrix, allowing matrix multiplication leading to combination of all features and sampels.\\
+$X^TX$ (Gram matrix): Summarizes the relationships between features across all samples \\
+$X^Ty$: Captures relationship between features in X and outcomes in y.
 
 \section{Bias and Variance}
 Bias: Describes how the model performs on training data. Low Bias = Good fit for training data\\
@@ -70,7 +72,7 @@ With increasing model complexity, the training loss decreases. The generalizatio
 \section{Absolute Regression Test Metrics}
 Signs: \\
 e: Error \\
-n: Amount of data poiunts\\
+n: Amount of data points\\
 
 \subsection{Mean Square Error/Deviation}
 $\frac{1}{n} \sum_{i = 1}^{n} e_i^2 $ \\
@@ -97,7 +99,7 @@ Returns a value between r<0 and r<=1\\
 0: The model has no fit \\
 <0: Worse then a horizontal line\\
 \section{Model training cycle}
-1.Divide data into training, validation, test set \\ 
+1.Divide data into training, validation, test set (e.g. 50, 20, 30)\\ 
 2.Train model on training set\\
 3.Use model on validation data to see performance and adjust hyperparameters (polynomial degree)\\
 4.Retrain system on training and validation dataset \\ 
@@ -110,11 +112,31 @@ Test data leakage describes the usage of test data to adjust the model (a.e. adj
 \section{Regularization}
 The degree of polynomial can be seen as complexity of the model\\
 Regularization is used to prevent overfitting by penalizing large coefficient values. \\ 
+The best $\theta$ is to be found.
 \subsection{L2 Regularization/Ridge regression}
+This method first takes the cost function with $\lambda $ and then derives it after $\theta$ \\
+Afterwards, the derived function gets set to 0, therefore looking for the lowest error point. \\ 
+This dervied function then gets rearranged to solve for $\theta $, so the $\theta $ creating the lowest error gets found.\\
+Through ridge regression, the bias usually rises but the variance decreases.\\
+The l2 regularization works like this: \\
+1. Set a $\lambda $ value.The higher this value, the harder $\theta $ will be penalized, so $\theta $ will be lower with a higher $\lambda $. \\ 
+2. Adjust $\theta $ to minimize the cost function for chosen $\lambda$. A too small $\theta$ will result in the error term increasing (underfitting), a too high one will increase the penalty \\
+The goal is to find a $\theta$ that balances the error and also keeps the coefficients small.
+$\arg\min_{\theta} \frac{1}{m} \sum_{i = 1}^{m} l(h_0(x^i),y^i)+\lambda \sum_{i = 1}^{n}\theta^2$ \\
+Using a gradient helps finding the optimal $\theta$: \\
+$\theta = (X^TX+\lambda I)^-1X^Ty$\\
+Side Note: The Identity matrix I is a matrix with ones on the diagonal and zeros elsewhere. It makes the term always invertable. \\
+\subsection{L1 Regularization/Lasso regression}
+The main difference is, that the total value of $\theta$ is used. Therefore, the penalty term can be zero, leading to the identification of features essentially not relevant to the model.
+\\$\arg\min_{\theta} \frac{1}{m} \sum_{i = 1}^{m} l(h_0(x^i),y^i)+\lambda \sum_{i = 1}^{n} |  \theta |$ \\
+\section{Support Vector Machine}
+
 
 \section{PROBLEMS}
-Lection 4 slide 7
-R Squared
-Leciton 4 slide 24
+Lecture 3 Slide 10\\
+Lection 3 Slide 15\\
+Lection 4 slide 7\\
+R Squared\\
+Lection 4 slide 24\\
 
 \end{document}
