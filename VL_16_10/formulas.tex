@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
 \begin{document}
 
 \section{General info}
@@ -9,7 +10,6 @@ Since the formula for the predicted value is \\
 $\hat{y} = \theta_1 * x_i + \theta_2$ \\ 
 the SSE formula can be summarized into\\
 $ E(\theta) = \sum_{i}^{n} (\theta_1 * x_i + \theta_2 - y_i) ^2$
-
 \subsection{Canonical machine learning optimization problem}
 ?? Formula not understandable.
 
@@ -50,6 +50,7 @@ $( \sum_{j=1}^{n} \theta_j x_j^i - y^i)^2$: Calculates the squared difference be
 $l(\theta ) = \sum_{i=1}^{n} (\theta_j x_j^i - y^i)^2$
 
 \section{Gradient descent}
+This is an iterative procedure which can be applied to all problems that have a loss function.
 Negative Derivated error function and step by step insert x-values to find the near zero y-value (error value) \\
 The stepsize indicates the difference between the current and the next entered x-value. If its to high, the lowest point might be skipepd. \\
 The optimal $\theta$ is to be found by this formula: \\
@@ -129,8 +130,81 @@ Side Note: The Identity matrix I is a matrix with ones on the diagonal and zeros
 \subsection{L1 Regularization/Lasso regression}
 The main difference is, that the total value of $\theta$ is used. Therefore, the penalty term can be zero, leading to the identification of features essentially not relevant to the model.
 \\$\arg\min_{\theta} \frac{1}{m} \sum_{i = 1}^{m} l(h_0(x^i),y^i)+\lambda \sum_{i = 1}^{n} |  \theta |$ \\
-\section{Support Vector Machine}
+\section{Classification from labeled data}
+\subsection{Linear classification Classification}
+The goal is to predict a discrete valued quantity y \\ 
+It is to differentiate between binary and multiclass classification\\
+Binary classification: y $\epsilon$ {-1, +1}\\
+Multiclass classification: y $\epsilon$ {1,2,..,k}\\
+\subsection{Loss function for classification}
+\subsubsection{0/1 loss}
+This loss function essentially returns 1 if an item is misclassified and 0 if not. 
+\subsubsection{Pseudocode}
+(0 if sign ($h_\theta(x)=y$) else 1)
+\subsubsection{Formula}
+$\iota_0/1(h_\theta(x),y)$=1{$yh_\theta(x)\leq 0$}\\ 
+If $h_\theta(x)$ and y have the same sign, then $h_\theta(x)*y$ will be positive. If they dont have the same sign, it will be negative, so a loss of one.
+\subsubsection{Problem statement}
+First of all, its hard to optimize. It is not given how rong a value is, since it is a 0 or 1 output. \\
+Also it is impossible to derive the function, therefore optimization functions like gradient descent dont work \\ 
+It is also computefully intense to calculate the local minimum, since there are multiple 0 values. 
+\subsubsection{Exponential loss (MVP)}
+This function uses the error value as an exponent. If the error value is positive, the loss will be huge. 
+If the error value is negative, the loss will be low. 
+\subsubsection{Formula}
+$l\exp  = \exp (-yh_\theta(x))$
+\subsection{Logistic loss}
+\subsection{Formula}
+$l\log  = \log (1+\exp (-yh_\theta(x)))$
+\subsection{Hinge loss function}
+\subsubsection{Formula}
+$lhinge = \max({1 - h_\theta(x),0})$\\ 
+\subsection{Solving Optimization problem in classification task}
+In classification, the canonical approach can be used: 
+\\$\arg\min_{\theta}\sum_{i = 1}^{m} l(h_0(x^i),y^i)$\\ 
+For optimization, we use the gradient descent\\
+\subsection{Support vector machine}
+SVM is a way to solve the canonical machine learning problem by using: 
+\\ Hinge loss function 
+\\ Linear hypothesis
+\\ Regularization term 
+\subsubsection{Formula}
+Pre-processing with zero mean and unit variance is really important!\\
+The training steps are way smaller since the input features are, leading to faster gradient descent success.
+$\min \theta \sum_{i = 1}^{m} \max ({1 - y^i \theta^Tx^i, 0} + \frac{lambda}{2}) | | \theta | |^2_2   $
+\\ We use a gradient descent to find the optimal $\theta$
+\\ INSERT GRADIENT DESCENT FORUMA!
+\subsubsection{Normalization}
+1.Normalizing all values to live in a range [-1,1]\\
+2.Normalize to zero mean and unit variance(MVP)
+\subsubsection{[-1,1] Normalization}
+We scale down every feature, so that the smallest feature value gets the value -1 and the largest 1.
+\subsubsection{Zero mean and unit variance}
+We scale down every feature, so that the mean of the feature is = 0 and and devide that by the standard deviation of all features. 
 
+\section{Nonlinear classification}
+$\min \theta \sum_{i = 1}^{m} \max ({1 - y^i \theta^Tx^i, 0} + \frac{lambda}{2}) | | \theta | |^2_2$
+\\Instead of a x value, we insert a non-linear function (e.g. x*x). 
+\\ $  \includegraphics[width=\linewidth]{/Users/leoblank/Desktop/Screenshots/Screenshot 2024-11-02 at 18.43.19.png}$
+\\ $  \includegraphics[width=\linewidth]{/Users/leoblank/Desktop/Screenshots/Screenshot 2024-11-02 at 18.43.26.png}$
+The steps to perform a non-linear classification task can be summarized into the following three steps: 
+\\ 1.Use 1-d data
+\\ 2.Use a non-linear function as x to move the data more dimensional space
+\\ 3.Use a Support vector classifier to classify the data
+\subsection{Radial basis function (RBF)}
+The radial basis function finds support vector machines in infinite dimensions. \\ 
+The observations closest to a new one have a huge influence on the final classifcation, while the ones far away dont\\
+ 
+\section{Evaluating classification metrics}
+\subsection{Precision vs Accuray}
+Accuracy: Ratio of correctly classified samples over all data points. Therefore how well the classification model performs in general \\ 
+Precision: The ratio of true positives to the overall positives.
+\subsection{Classification error metrics derived from confusion matrix}
+TP Rate: $\frac{FP}{FP+TN}$\\
+FP Rate: $\frac{FP}{TP+FP}$ \\ 
+Precision: $\frac{TP}{FP+TN} $\\
+Accuracy: $\frac{TP+TN}{TP+TN+TF+FN} $
+\subsubsection{ROC Curve}
 
 \section{PROBLEMS}
 Lecture 3 Slide 10\\
@@ -138,5 +212,8 @@ Lection 3 Slide 15\\
 Lection 4 slide 7\\
 R Squared\\
 Lection 4 slide 24\\
-
+Lection 5 Slide 9 Logarithmic function \\
+Lection 5 Slide 18 what i V, what is minimize theta
+Lection 5 slide 41 RBF \\
+Lection 5 Slide 56 accurate preice
 \end{document}
